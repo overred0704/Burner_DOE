@@ -54,14 +54,23 @@ class Burner_set():
 
     def possible_set(self):
         tab = self.fill_method()
-        for num in range(len(tab)):
+        for num in range(3):
             for i in range(self.burner_number):
                 name = 'burner_' + str(i+1)
                 if (i+1)%2 == 1:
                     tab[name][num] = 1
                 else:
                     tab[name][num] = 0
-
+        
+        if len(tab) > 3:
+            for j in range(3,6):
+                for i in range(self.burner_number):
+                    name = 'burner_' + str(i+1)
+                    if (i+1)%4 == 1 or (i+1)%4 == 0:
+                        tab[name][j] = 1
+                    else:
+                        tab[name][j] = 0
+     
         return tab
 
 
@@ -73,14 +82,14 @@ class Burner_set():
 
 #%%
 def main():
-    print('Enter the number of burner:')
-    s = int(input())
+    s = int(input('Enter the number of burner: '))
     if s %2 != 0 :
         print('Burner Number Error')
     else:
         b = Burner_set(s)
-        print('Possible Switch Combination:', len(b.group))
+        print('Possible Switch Method:', len(b.group))
         b.export_csv()
+        print('Table Generated Done!')
 
 
 
