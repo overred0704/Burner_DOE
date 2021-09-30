@@ -3,9 +3,10 @@ import pandas as pd
 pd.options.mode.chained_assignment = None
 #%%
 class Burner_set():
-    def __init__(self, burner_number):
+    def __init__(self, burner_number, filename):
         self.burner_number = burner_number
         self.group = []
+        self.filename = filename
         for i in range(1, int(self.burner_number/2)+1):
             if self.burner_number/i == 4 or self.burner_number/i == 2:
                 self.group.append(i)
@@ -77,16 +78,18 @@ class Burner_set():
 
     def export_csv(self):
         tab = self.possible_set()
-        tab.to_excel('set3.xlsx', index=False)
+        name = self.filename + '.xlsx'
+        tab.to_excel(name, index=False)
 
 
 #%%
 def main():
     s = int(input('Enter the number of burner: '))
+    name = str(input('Please Enter the File Name: '))
     if s %2 != 0 :
         print('Burner Number Error')
     else:
-        b = Burner_set(s)
+        b = Burner_set(s, name)
         print('Possible Switch Method:', len(b.group))
         b.export_csv()
         print('Table Generated Done!')
