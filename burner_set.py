@@ -99,3 +99,5 @@ def main():
 if __name__ == '__main__':
     main()
 
+#to csv
+#要把整個combine一起 包成exe 不能安裝python
