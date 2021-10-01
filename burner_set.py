@@ -9,18 +9,6 @@ class Burner_set():
         for i in range(1, int(self.burner_number/2)+1):
             if self.burner_number/i == 4 or self.burner_number/i == 2:
                 self.group.append(i)
-        #set raw list
-        t = []
-        for i in range(2):
-            test = []
-        for j in range(int(self.burner_number/2)):
-            if i == 0:
-                test.append(1)
-            else:
-                test.append(0)
-        t.append(test)
-        self.combination = t
-
 
 
     def create_table(self):
@@ -79,7 +67,10 @@ class Burner_set():
         tab = self.possible_set()
         tab.to_csv('Burner_set.csv', index=False, encoding='big5')
 
-
+#%%
+b = Burner_set(6)
+#%%
+b.group
 #%%
 def main():
     s = int(input('Enter the number of burner: '))

@@ -1,18 +1,39 @@
 
-# %%
-import pandas as pd
-# %%
-table = pd.read_excel('test.xlsx')
-
-
-
-# %%
-table.to_excel('set_2.xlsx', index=False)
-
 #%%
-table2 = pd.read_excel('set2.xlsx')
+burner_number = 6
+
 # %%
-len(table2)
+def create_col():
+    col = ['切換方式','切換時間']
+    for i in range(int(burner_number)):
+        name = i + 1
+        col.append('burner_' + str(name))
+    
+    return col
 # %%
-s = int(input('test: '))
+c = create_col()
+#%%
+group = [3]
+
+# %%
+def create_content(iter):
+
+    time = [30, 40, 50]
+    methods = ['切換一', '切換二']
+    
+    col = []
+    col.append(methods[0])
+    col.append(time[iter])
+    for i in range(burner_number):
+        if (i+1)%2 == 1:
+            col.append(1)
+        else:
+            col.append(0)
+    return col
+#%%
+iter_num = 3*len(group)
+# %%
+for i in range(iter_num):
+    cc = create_content(i)
+    print(cc)
 # %%

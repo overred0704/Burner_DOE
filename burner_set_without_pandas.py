@@ -1,4 +1,6 @@
 #%%
+import csv
+#%%
 class Burner_set():
     def __init__(self, burner_number):
         self.burner_number = burner_number
@@ -6,17 +8,31 @@ class Burner_set():
         for i in range(1, int(self.burner_number/2)+1):
             if self.burner_number/i == 4 or self.burner_number/i == 2:
                 self.group.append(i)
-        #set raw list
-        t = []
-        for i in range(2):
-            test = []
-        for j in range(int(self.burner_number/2)):
-            if i == 0:
-                test.append(1)
+
+    def create_list(self):
+        col = ['切換方式','切換時間']
+        for i in range(int(self.burner_number)):
+            name = i + 1
+            col.append('burner_' + str(name))
+        
+        return col
+    
+    def create_content(self, iter):
+
+        time = [30, 40, 50]
+        methods = ['切換一', '切換二']
+        
+        col = []
+        col.append(methods[0])
+        col.append(time[iter])
+        for i in range(self.burner_number):
+            if (i+1)%2 == 1:
+                col.append(1)
             else:
-                test.append(0)
-        t.append(test)
-        self.combination = t
+                col.append(0)
+        return col
+    
+    
 
 
 
@@ -29,9 +45,9 @@ class Burner_set():
             col.append('weight_' + str(i))
             col.append('gas_' + str(i))
 
-        table = pd.DataFrame(columns=col)
+        #table = pd.DataFrame(columns=col)
 
-        return table
+        #return table
 
     def fill_method(self):
         tab = self.create_table()
