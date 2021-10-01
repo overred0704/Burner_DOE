@@ -31,7 +31,18 @@ class Burner_set():
             else:
                 col.append(0)
         return col
-    
+
+    def write_csv(self):
+        with open('test.csv', 'w', encoding='Big5') as f:
+            writer = csv.writer(f)
+            header = self.create_list()
+            writer.writerow(header)
+            iter_num = 3*len(self.group)
+            for i in range(iter_num):
+                data = self.create_content(i)
+                writer.writerow(data)
+            
+    #這邊還缺第二種情況
     
 
 
